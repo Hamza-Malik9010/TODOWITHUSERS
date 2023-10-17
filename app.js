@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import _ from "lodash";
 
 const app = express();
-const port = process.env.PORT;
+let port = process.env.PORT;
 const API_URL = "http://localhost:3000";
 
 app.use(express.static("public"));
