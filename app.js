@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import _ from "lodash";
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT;
 const API_URL = "http://localhost:3000";
 
 app.use(express.static("public"));
@@ -135,9 +135,12 @@ app.post("/del-list/:id", async (req, res) => {
   }
 });
 
+if (port==null || port =="")
+{
+  port = 3000;
+}
 
 
-
-app.listen(port, () => {
-  console.log(`Backend server is running on http://localhost:${port}`);
+app.listen(port, function () {
+  console.log(`Backend server is running on ${port}`);
 });
