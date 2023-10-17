@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Blog</title>
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+<% if (list) {%>
+<body>
+  <div class="container">
+    <h1>
+      <%= list.name %>
+    </h1>
+    <% if (list.todo) { %>
+    <% list.todo.forEach(function(task){ %>
+      <form id="list-memory" method="post" action="/delete">
+     <p> <input type="checkbox" id="check" name="taskid" value="<%=task._id%>" onChange=" this.form.submit()">
+      <%= task.content %></p>
+      <input type="hidden" id="l-name" name="listn" value="<%= list.name %>">
+      </form>
+    <% }); %>
+    <% } %>
+      <form id="entry-form" action="/entry" method="post">
+        <input type="text" id="inputText2" name="task" placeholder="Enter your task">
+        <input type="hidden" id="l-name" name="listN" value="<%= list.name %>">
+        <button class="add-task" type="submit"> Done </button>
+      </form>
+
+  </div>
+
+  <br/> <br/> <br/> <br/>
+  <form action="/back" method="post">
+<button type = "submit">Back</button>
+</form>
+
+</body>
+
+<% } %>
+</html>
